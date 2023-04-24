@@ -4,11 +4,6 @@ metadata:
   labels:
     kubernetes.io/metadata.name: test-rabbit
   name: test-rabbit
-spec:
-  finalizers:
-    - kubernetes
-status:
-  phase: Active
 ---
 apiVersion: rabbitmq.com/v1beta1
 kind: RabbitmqCluster
