@@ -23,6 +23,8 @@ spec:
       collect_statistics_interval = 10000
       consumer_timeout = 18000000
       log.default.level = debug
+      default_user=test
+      default_pass=youwontguessme
   replicas: 3
   resources:
     limits:

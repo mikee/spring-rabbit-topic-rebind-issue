@@ -58,7 +58,7 @@ class RabbitTopicIssueApplicationTests implements ApplicationContextAware {
 
   String exchangeName = "test-exchange";
   String wildcardRoutingKey = "#";
-  String testNameSpace = "rabbit-test";
+  String testNameSpace = "test-rabbit";
   @Test
   void contextLoads() {
   }
@@ -159,14 +159,13 @@ class RabbitTopicIssueApplicationTests implements ApplicationContextAware {
     AtomicLong sent = new AtomicLong(0L);
     long max = 1000;
 
-    String exchangeName = "test-exchange";
-    String wildcardRoutingKey = "#";
-
     BeanDefinitionBuilder b =
         BeanDefinitionBuilder.rootBeanDefinition(AnonymousQueue.class);
     registry.registerBeanDefinition("topicBean", b.getBeanDefinition());
-    Queue myQueue = factory.getBean("topicBean", AnonymousQueue.class);
+    Queue someOtherQueue = factory.getBean("topicBean", AnonymousQueue.class);
 
+
+    Queue myQueue = QueueBuilder.nonDurable().autoDelete().build();
     TopicExchange topicExchange = new TopicExchange(exchangeName,true,false);
     Binding myBinding = BindingBuilder.bind(myQueue).to(topicExchange).with(wildcardRoutingKey);
     rabbitAdmin.declareExchange(topicExchange);
