@@ -136,7 +136,7 @@ class RabbitTopicIssueApplicationTests implements ApplicationContextAware {
       sent.incrementAndGet();
     }
 
-    long timeout = 600000L;
+    long timeout = 60000L;
     long start = System.currentTimeMillis();
     while (received.get() < max) {
       try {
@@ -217,7 +217,7 @@ class RabbitTopicIssueApplicationTests implements ApplicationContextAware {
       sent.incrementAndGet();
     }
 
-    long timeout = 600000L;
+    long timeout = 60000L;
     long start = System.currentTimeMillis();
     while (received.get() < max) {
       try {
